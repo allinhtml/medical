@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<title>Medical 101</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+  <!-- TITLE BAR -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Medical 101 — back to top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 6v6"/><path d="M9 9h6"/></svg>
+        </span>
+        <span class="brand-text">
+          <strong>Medical 101</strong>
+          <small>Second edition · November 2026</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="On this page">
+        <a href="#chapters">Chapters</a>
+        <a href="#explore3d" data-open-3d>Explore in 3D</a>
+        <a href="#glossary" data-open-view="glossary">Glossary</a>
+      </nav>
+      <button class="top-3d-btn" type="button" data-open-3d>Explore 3D</button>
+      
+    </div>
+  </div>
+
+  <!-- CHAPTER INDEX (landing view) -->
+  <section class="chapter-index" id="chapters">
+    <div class="wrap wrap-full">
+      <div class="index-search">
+        <input id="chapterSearch" type="search" placeholder="Filter chapters — e.g. plaque, CBC, vaccines…" aria-label="Filter chapters">
+        <span class="index-count" id="indexCount" aria-live="polite">44 chapters · 5 reference pages</span>
+      </div>
+      <p class="index-empty" id="indexEmpty">No chapter matches that filter. Try a shorter word — or clear the filter to see all 44 chapters again.</p>
+      <div id="indexBody"></div>
+    </div>
+  </section>
+
+  <!-- READER (shown when a chapter is opened) -->
+  <section class="reader-section" id="read" hidden>
+    <div class="wrap wrap-full">
+
+      <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+
+      <div class="reader-tools">
+        <button class="back-btn" id="backToIndex" type="button">← All chapters</button>
+        <button class="toc-toggle" id="tocToggle" type="button" aria-expanded="true" aria-controls="toc">☰ Contents</button>
+        <button class="rail-toggle" id="railToggle" type="button" aria-expanded="true" aria-controls="rail">On this page</button>
+        <div class="search-box">
+          <input id="bookSearch" type="search" placeholder="Search the whole book — try “plaque”, “VLDL”, “fever”, “atorvastatin”…" aria-label="Search the whole book" autocomplete="off">
+          <span class="search-ico" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+          </span>
+          <div class="search-results" id="searchResults" hidden></div>
+        </div>
+      </div>
+
+      <div class="reader-grid" id="readerGrid">
+        <aside class="toc" id="toc" aria-label="Book contents"></aside>
+        <div class="article-shell">
+          <div class="read-progress" aria-hidden="true"><span id="readProgressFill"></span></div>
+          <article class="article" id="article" aria-live="polite"></article>
+        </div>
+        <aside class="rail" id="rail" aria-label="Page index"></aside>
+      </div>
+      <button class="to-top" id="toTop" type="button" hidden>↑ Back to top</button>
+    </div>
+  </section>
+
+  <!-- EXPLORE IN 3D -->
+  <section class="explore3d" id="explore3d" hidden>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a class="crumb-link" href="#chapters">All chapters</a><span class="crumb-sep" aria-hidden="true">›</span><span class="crumb-current" aria-current="page">Explore in 3D</span></nav>
+      <div class="view-bar">
+        <button class="back-btn" id="backFrom3d" type="button">← Back to chapters</button>
+      </div>
+      <div class="section-head">
+        <div>
+          <h2>Explore in 3D</h2>
+          <p>Four models that run right here on the page — no extra apps, no logins. Drag any model to rotate it, scroll or pinch to zoom. They tell the same story as the artery and cholesterol chapters, in a way a flat diagram can't: how plaque grows inside a wall, the moment it bursts, where cholesterol is made, and the journey it takes through your blood.</p>
+        </div>
+      </div>
+
+      <div class="d3-grid">
+
+        <article class="d3-card" id="d3-artery">
+          <p class="d3-kicker">Model 1 · The artery</p>
+          <h3>3D artery explorer — watch plaque grow</h3>
+          <p class="d3-intro">A living artery wall, layer by layer. Move the stage slider from a healthy artery to the moment of rupture, and flip to the cross-section to see exactly where plaque hides — inside the wall, under the lining.</p>
+          <div class="d3-stage" data-stage-wrap>
+            <div class="d3-mount" id="mount-artery"></div>
+            <span class="d3-hint">Drag to rotate · scroll to zoom</span>
+          </div>
+          <div class="d3-slider-row">
+            <label for="arteryStage">Plaque stage</label>
+            <input type="range" id="arteryStage" min="0" max="4" step="1" value="0" aria-describedby="arteryCaption">
+            <span class="d3-stage-name" id="arteryStageName">1 · Healthy</span>
+          </div>
+          <div class="d3-controls">
+            <button class="d3-btn" id="arterySectionBtn" type="button" aria-pressed="false">Show cross-section</button>
+          </div>
+          <p class="d3-caption" id="arteryCaption"><strong>Healthy artery.</strong> The wall is smooth and springy, the channel (lumen) is wide open, and blood slips through without touching anything it shouldn't.</p>
+          <ul class="d3-legend" aria-label="Artery colours">
+            <li><span class="d3-dot" style="background:#e8b4a0"></span>Adventitia (outer coat)</li>
+            <li><span class="d3-dot" style="background:#c0392b"></span>Media (muscle layer)</li>
+            <li><span class="d3-dot" style="background:#f3e2c7"></span>Intima (inner lining)</li>
+            <li><span class="d3-dot" style="background:#f2b705"></span>Lipid core (fatty centre)</li>
+            <li><span class="d3-dot" style="background:#8e1f1f"></span>Clot</li>
+          </ul>
+          <p class="d3-chapter-links">From the book: <button type="button" data-open-chapter="39">Ch 39 · Artery basics</button> · <button type="button" data-open-chapter="40">Ch 40 · What plaque is</button> · <button type="button" data-open-chapter="41">Ch 41 · How plaque grows</button></p>
+        </article>
+
+        <article class="d3-card" id="d3-rupture">
+          <p class="d3-kicker">Model 2 · The dangerous moment</p>
+          <h3>Plaque rupture — step by step</h3>
+          <p class="d3-intro">Most heart attacks don't come from the biggest plaque — they come from a soft one whose thin cap tears. Press play, or step through it one moment at a time.</p>
+          <div class="d3-stage" data-stage-wrap>
+            <div class="d3-mount" id="mount-rupture"></div>
+            <span class="d3-hint">Drag to rotate · scroll to zoom</span>
+          </div>
+          <div class="d3-controls">
+            <button class="d3-btn primary" id="rupturePlay" type="button" aria-pressed="false">▶ Play</button>
+            <button class="d3-btn" id="rupturePrev" type="button">← Step back</button>
+            <button class="d3-btn" id="ruptureNext" type="button">Step forward →</button>
+          </div>
+          <div class="d3-steps" id="ruptureSteps" role="group" aria-label="Rupture steps"></div>
+          <p class="d3-caption" id="ruptureCaption"><strong>Step 1 — A quiet plaque.</strong> Under a smooth cap, a soft pool of fat (the lipid core) sits inside the artery wall. The channel still looks almost normal — which is why this kind of plaque gives no warning.</p>
+          <p class="d3-chapter-links">From the book: <button type="button" data-open-chapter="42">Ch 42 · Plaque rupture</button> · <button type="button" data-open-chapter="43">Ch 43 · Regression &amp; stabilisation</button> · <button type="button" data-open-chapter="19">Ch 19 · Heart attack basics</button></p>
+        </article>
+
+        <article class="d3-card" id="d3-liver">
+          <p class="d3-kicker">Model 3 · The factory</p>
+          <h3>3D liver — where cholesterol is made</h3>
+          <p class="d3-intro">Your liver makes most of your cholesterol at one key step: an enzyme called HMG-CoA reductase. That exact step is where atorvastatin acts. Yellow dots are fresh cholesterol being packed into VLDL particles and shipped out.</p>
+          <div class="d3-stage" data-stage-wrap>
+            <div class="d3-mount" id="mount-liver"></div>
+            <span class="d3-hint">Drag to rotate · scroll to zoom</span>
+          </div>
+          <div class="d3-controls">
+            <button class="d3-btn" id="statinBtn" type="button" aria-pressed="false">Take the statin (atorvastatin)</button>
+          </div>
+          <p class="d3-caption" id="liverCaption"><strong>No statin.</strong> HMG-CoA reductase (the glowing marker) runs at full speed, the liver makes cholesterol freely, and VLDL particles leave loaded — the start of the chain that ends with LDL 130.</p>
+          <ul class="d3-legend" aria-label="Liver colours">
+            <li><span class="d3-dot" style="background:#7a2e22"></span>Liver</li>
+            <li><span class="d3-dot" style="background:#ffd94d"></span>New cholesterol</li>
+            <li><span class="d3-dot" style="background:#e67e22"></span>VLDL leaving</li>
+            <li><span class="d3-dot" style="background:#39c2d7"></span>HMG-CoA reductase</li>
+            <li><span class="d3-dot" style="background:#5da85f"></span>Gallbladder (bile)</li>
+          </ul>
+          <p class="d3-chapter-links">From the book: <button type="button" data-open-chapter="11">Ch 11 · Liver</button> · <button type="button" data-open-chapter="25">Ch 25 · How statins work</button> · <button type="button" data-open-chapter="20">Ch 20 · Cholesterol &amp; lipid profile</button></p>
+        </article>
+
+        <article class="d3-card" id="d3-pathway">
+          <p class="d3-kicker">Model 4 · The journey</p>
+          <h3>Cholesterol pathway — liver to artery wall, and back</h3>
+          <p class="d3-intro">Follow the particles. VLDL leaves the liver loaded with fat, shrinks to IDL, then LDL — and some LDL slips into the artery wall. HDL runs the return trip, carrying cholesterol back to the liver, where it leaves the body as bile. Built with an example patient's numbers.</p>
+          <div class="d3-stage" data-stage-wrap>
+            <div class="d3-mount" id="mount-pathway"></div>
+            <span class="d3-hint">Drag to rotate · scroll to zoom</span>
+          </div>
+          <div class="d3-controls">
+            <button class="d3-btn primary" id="pathwayPlay" type="button" aria-pressed="true">⏸ Pause</button>
+          </div>
+          <div class="d3-chips" aria-label="Example patient's numbers">
+            <span class="d3-chip">LDL <b>130</b> mg/dL</span>
+            <span class="d3-chip">HDL <b>50</b> mg/dL</span>
+            <span class="d3-chip">Triglycerides <b>150</b> mg/dL</span>
+            <span class="d3-chip">VLDL ≈ <b>30</b> mg/dL</span>
+            <span class="d3-chip">Total <b>212</b> mg/dL</span>
+          </div>
+          <ul class="d3-legend" aria-label="Pathway colours">
+            <li><span class="d3-dot" style="background:#e67e22"></span>VLDL (leaves the liver, fat-loaded)</li>
+            <li><span class="d3-dot" style="background:#e8a13a"></span>IDL (half-emptied)</li>
+            <li><span class="d3-dot" style="background:#d63c2f"></span>LDL (cholesterol-rich)</li>
+            <li><span class="d3-dot" style="background:#2e9e6b"></span>HDL (return trip)</li>
+            <li><span class="d3-dot" style="background:#c9a227"></span>Bile (way out)</li>
+          </ul>
+          <p class="d3-caption"><strong>Why the numbers matter:</strong> with LDL at 130, far more LDL particles are circulating than HDL can tidy up — so more of them end their journey inside the artery wall. The statin's job is to cut the supply at the liver (Model 3) so fewer particles ever set off.</p>
+          <p class="d3-chapter-links">From the book: <button type="button" data-open-chapter="21">Ch 21 · Your lipid panel, decoded</button> · <button type="button" data-open-chapter="24">Ch 24 · Triglycerides</button> · <button type="button" data-open-chapter="20">Ch 20 · Cholesterol basics</button> — the full cholesterol-pathways lesson (Lesson 46) joins the book as the daily series reaches it.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Medical 101 · Second edition · Compiled November 2026</strong><br>
+      Learning only — final decisions always with the doctor.</p>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/models3d.js"></script>
+</body>
+</html>
